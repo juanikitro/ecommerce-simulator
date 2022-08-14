@@ -3,13 +3,13 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ProductModule } from './product/product.module'
-import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
-import { CartModule } from './cart/cart.module';
+import { UserModule } from './user/user.module'
+import { AuthModule } from './auth/auth.module'
+import { CartModule } from './cart/cart.module'
 
 @Module({
 	imports: [
-		MongooseModule.forRoot('mongodb://localhost/store'),
+		MongooseModule.forRoot(process.env.MONGODB_URL as string),
 		ProductModule,
 		UserModule,
 		AuthModule,

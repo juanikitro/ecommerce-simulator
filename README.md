@@ -3,31 +3,50 @@
 ---
 
 # Development plan
+
 ## Steps
-1. Plan and creation of the database
-2. Authentication (with Google and JWT)
-3. API users managment (admin, permissions)
-4. API products interaction (CRUD, pagination, queries)
-5. API configs and security (SQL injection and XSS validation, CORS, limit requests)
-6. Payment simulation (with a chart and taxes calculator)
-7. Documentation
+
+1. Authentication (with Passport and JWT)
+2. API users managment
+3. API products interaction (CRUD, pagination, queries)
+4. API configs and security (SQL injection and XSS validation, CORS, limit requests)
+5. Payment simulation (with a chart and taxes calculator)
+6. Documentation
+
 ## Techs
-- NodeJS
-- Nest
-- Typescript
-- JWT
-- MySQL
-- Swagger
-## UML diagram
-...
+
+-   NodeJS
+-   NestJS
+-   Typescript
+-   JWT & Passport
+-   MongoDB
+-   Swagger
 
 ---
 
 # Set up
 
 ## Instalation
+
 ...
+
 ## Tests
+
 ...
+
 ## .env configuration
-...
+
+```
+JWT_SECRET = String
+MONGODB_URL = String
+```
+
+---
+
+# ToDo
+
+-   Pagination
+-   API configs and security
+-   Payment simulation
+-   Documentation
+-   Tests
