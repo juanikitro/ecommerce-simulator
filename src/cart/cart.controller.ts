@@ -1,0 +1,52 @@
+import {
+	Controller,
+	Post,
+	Body,
+	Request,
+	UseGuards,
+	Delete,
+	NotFoundException,
+	Param,
+} from '@nestjs/common'
+import { Roles } from '../auth/decorators/roles.decorator'
+import { Role } from '../auth/enums/role.enum'
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
+import { RolesGuard } from '../auth/guards/roles.guard'
+import { CartService } from './cart.service'
+import { ItemDTO } from './dtos/item.dto'
+
+@Controller('cart')
+export class CartController {
+	constructor(private cartService: CartService) {}
+
+	@UseGuards(JwtAuthGuard, RolesGuard)
+	@Roles(Role.User)
+	@Post('/')
+	async addItemToCart(@Request() req: any, @Body() itemDTO: ItemDTO) {
+		const userId = req.user.userId
+		const cart = await this.cartService.addItemToCart(userId, itemDTO)
+		return cart
+	}
+
+	@UseGuards(JwtAuthGuard, RolesGuard)
+	@Roles(Role.User)
+	@Delete('/')
+	async removeItemFromCart(@Request() req: any, @Body() { productId }: any) {
+		const userId = req.user.userId
+		const cart = await this.cartService.removeItemFromCart(
+			userId,
+			productId
+		)
+		if (!cart) throw new NotFoundException('Item does not exist')
+		return cart
+	}
+
+	@UseGuards(JwtAuthGuard, RolesGuard)
+	@Roles(Role.User)
+	@Delete('/:id')
+	async deleteCart(@Param('id') userId: string) {
+		const cart = await this.cartService.deleteCart(userId)
+		if (!cart) throw new NotFoundException('Cart does not exist')
+		return cart
+	}
+}
