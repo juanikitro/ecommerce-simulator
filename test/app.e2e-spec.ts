@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
 import request from 'supertest'
 import { AppModule } from './../src/app.module'
+import assert from 'assert'
 
 describe('AppController (e2e)', () => {
 	let app: INestApplication
@@ -15,10 +16,19 @@ describe('AppController (e2e)', () => {
 		await app.init()
 	})
 
-	it('/ (GET)', () => {
+	afterAll(async () => {
+		await app.close()
+	})
+
+	it('/auth/register (POST)', () => {
 		return request(app.getHttpServer())
-			.get('/')
-			.expect(200)
-			.expect('Hello World!')
+			.post('/auth/register')
+			.send({
+				username: 'TestUser',
+				email: 'test@gmail.com',
+				password: 'Test123',
+				roles: 'user',
+			})
+			.expect(201)
 	})
 })
