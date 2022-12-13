@@ -1,4 +1,4 @@
-# E-Commerce-simulation
+# Nest-Ecommerce-Bootstrap
 
 ---
 
@@ -6,12 +6,13 @@
 
 ## Steps
 
-1. Authentication (with Passport and JWT)
-2. API users managment
-3. API products interaction (CRUD, pagination, queries)
-4. API configs and security (SQL injection and XSS validation, CORS, limit requests)
-5. Payment simulation (with a chart and taxes calculator)
-6. Documentation
+- [ ] Authentication (with Passport and JWT)
+- [ ] API users managment
+- [ ] API products interaction (CRUD, pagination, queries)
+- [ ] API configs and security (SQL injection and XSS validation, CORS, limit requests)
+- [ ] Payment without transfer (with a chart and taxes calculator)}
+- [ ] Tests
+- [ ] Documentation
 
 ## Techs
 
@@ -40,13 +41,3 @@
 JWT_SECRET = String
 MONGODB_URL = String
 ```
-
----
-
-# ToDo
-
--   Pagination
--   API configs and security
--   Payment simulation
--   Documentation
--   Tests
